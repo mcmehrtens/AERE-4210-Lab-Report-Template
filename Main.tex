@@ -1,0 +1,64 @@
+% Packages & Document Configurations
+\documentclass{4210-Lab}
+
+% Authors & Supervisor
+\firstauthor{Matthew Mehrtens}
+\secondauthor{}
+
+\supervisor{Dr. Brandon Runnels}
+\supervisormail{brunnels@iastate.edu}
+
+% Report Title & Subtitle
+\title{Lab Assignment 01}
+\subtitle{AERE 4210 - Lab 01}
+
+% Affiliations
+\university{Iowa State University}
+\degree{Aerospace Engineering}
+\school{College of Engineering}
+\course{Aerodynamics and Propulsion Laboratory}
+
+% Locale & Date
+\date{Ames, \monthname[\month] \number\year}
+
+% Make and Load Glossary & Acronyms
+\makeglossaries
+\loadglsentries{Miscellaneous/00-Glossary}
+\loadglsentries[\acronymtype]{Miscellaneous/01-Acronyms}
+
+\begin{document}
+
+% Covers
+\include{Covers/00-Cover}
+
+% Abstract
+\include{Chapters/00-Abstract}
+
+% List of contents, figures, and tables
+\tableofcontents
+\listoffigures
+\listoftables
+
+% Print Glossary & Acronym
+\printglossary
+\printglossary[type=\acronymtype]
+
+% Arabic numeration
+\pagenumbering{arabic}
+
+% Chapters
+\include{Chapters/01-Introduction}
+\include{Chapters/02-Methodology}
+\include{Chapters/03-Results}
+\include{Chapters/04-Discussion}
+\include{Chapters/05-Conclusion}
+
+% Bibliography
+% \printbibliography
+
+% Appendices
+% \appendix
+% \input{Covers/01-Appendices}
+% \input{Chapters/Appendices/00-AppendixA}
+
+\end{document}
