@@ -6,6 +6,7 @@
 \LoadClass[a4paper,twoside,11pt]{report}
 
 % Required Packages
+\RequirePackage{fix-cm} % Fixes font scaling
 \usepackage{graphicx} % Required for including images
 \usepackage{amsmath} % Mathematical expressions
 \usepackage{amssymb} % Mathematical symbols
@@ -89,35 +90,12 @@
 
 % Highlight both Author and Year in the citations
 \ExecuteBibliographyOptions{maxcitenames=1}
-\DeclareFieldFormat{citehyperref}{
-  \DeclareFieldAlias{bibhyperref}{noformat} % Avoid nested links
-  \bibhyperref{#1}}
-\DeclareFieldFormat{textcitehyperref}{
-  \DeclareFieldAlias{bibhyperref}{noformat} % Avoid nested links
-  \bibhyperref{
-    #1
-    \ifbool{cbx:parens}
-      {\bibcloseparen\global\boolfalse{cbx:parens}}
-      {}}}
+\DeclareFieldFormat{citehyperref}{\DeclareFieldAlias{bibhyperref}{noformat}\bibhyperref{#1}}
+\DeclareFieldFormat{textcitehyperref}{\DeclareFieldAlias{bibhyperref}{noformat}\bibhyperref{#1\ifbool{cbx:parens}{\bibcloseparen\global\boolfalse{cbx:parens}}{}}}
 \savebibmacro{cite}
 \savebibmacro{textcite}
-\renewbibmacro*{cite}{
-  \printtext[citehyperref]{
-    \restorebibmacro{cite}
-    \usebibmacro{cite}}}
-\renewbibmacro*{textcite}{
-  \ifboolexpr{
-    ( not test {\iffieldundef{prenote}} and
-      test {\ifnumequal{\value{citecount}}{1}} )
-    or
-    ( not test {\iffieldundef{postnote}} and
-      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
-  }
-    {\DeclareFieldAlias{textcitehyperref}{noformat}}
-    {}
-  \printtext[textcitehyperref]{
-    \restorebibmacro{textcite}
-    \usebibmacro{textcite}}}
+\renewbibmacro*{cite}{\printtext[citehyperref]{\restorebibmacro{cite}\usebibmacro{cite}}}
+\renewbibmacro*{textcite}{\ifboolexpr{( not test {\iffieldundef{prenote}} and test {\ifnumequal{\value{citecount}}{1}} ) or ( not test {\iffieldundef{postnote}} and test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )}{\DeclareFieldAlias{textcitehyperref}{noformat}}{}\printtext[textcitehyperref]{\restorebibmacro{textcite}\usebibmacro{textcite}}}
 
 % Tables
 \usepackage{tabularx} % Table length
